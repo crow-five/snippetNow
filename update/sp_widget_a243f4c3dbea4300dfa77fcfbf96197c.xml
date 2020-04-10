@@ -1212,14 +1212,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-11-24 20:16:40</sys_created_on>
         <sys_id>a243f4c3dbea4300dfa77fcfbf96197c</sys_id>
-        <sys_mod_count>462</sys_mod_count>
+        <sys_mod_count>495</sys_mod_count>
         <sys_name>SnippetNow Editor</sys_name>
         <sys_package display_value="SnippetNow" source="x_92893_snippetnow">86490346db010300dfa77fcfbf9619c2</sys_package>
         <sys_policy/>
         <sys_scope display_value="SnippetNow">86490346db010300dfa77fcfbf9619c2</sys_scope>
         <sys_update_name>sp_widget_a243f4c3dbea4300dfa77fcfbf96197c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-04-26 19:22:11</sys_updated_on>
+        <sys_updated_on>2020-04-10 19:08:00</sys_updated_on>
         <template><![CDATA[<div ng-show="data.hasRole">
 <!-- your widget template -->
   <!--<div class="panel panel-primary">-->
@@ -1230,11 +1230,12 @@
         Snippet <button class="btn btn-primary pull-right" ng-click="addAttachment(snippet.sys_id)" ng-if="snippet.sys_id && !canYouEdit()">Attachments <i class="fa fa-paperclip" aria-hidden="true"></i></button>
       </h3>
       
-    	<!--<div class="clearfix">
-      	<div class="pull-left">
-          <span class="attachment-pills label" ng-repeat="attachment in snippet.attachments.records">{{attachment.file_name}}</span>
+    	<div class="clearfix" ng-if="snippet.attachments.records.length > 0">
+        <div class="pull-left">
+          <label>Attachments: </label>
+          <a class="attachment-pills label" ng-repeat="attachment in snippet.attachments.records" ng-href="/sys_attachment.do?sys_id={{attachment.sys_id}}">{{attachment.file_name}}</a>
         </div> 
-  		</div>-->
+  		</div>
       <form>
         <div class="form-group">
           <label for="snippetTitle">Title</label>
@@ -1301,11 +1302,11 @@
           <div class="small pull-right" ng-if="snippet.sys_id">Show comments <input type="checkbox" ng-model="comments.show" ng-change="showComments(comments.show)" ng-true-value="true" ng-false-value="false"/></div>
           <div class="padding-top-10" id="snippetHTML" id="editor" ng-model="snippet.editor" class="form-control"></div>
           <!--<div class="pull-right"><span class="small muted">[mode: {{snippetEditorMode.value.replace('_', ' ')}}]</span></div>-->
-          <div class="col-lg-4 padding-top-10">
-            <div class="pull-left padding-top-6 padding-right-10">Editor Mode: </div>
+          <div class="pull-left col-lg-4 padding-top-10" style="padding-left: 0px">
+            <label class="padding-top-10 padding-right-10">Editor Mode </label>
             <div ng-show="snippetType.value" class="padding-top-6">[{{snippetEditorMode.value.replace('_', ' ')}}]</div>
-          <div ng-show="!snippetType.value"><sn-record-picker sn-disabled="!youCanEdit" default-query="" field="snippetEditorMode" table="'x_92893_snippetnow_snippetnow_editor_mode'" display-field="'mode_name'" value-field="'mode_value'" search-fields="'mode_name'" page-size="100" ></sn-record-picker></div>
-        </div>
+          	<div id="editorMode" ng-show="!snippetType.value"><sn-record-picker sn-disabled="!youCanEdit" default-query="" field="snippetEditorMode" table="'x_92893_snippetnow_snippetnow_editor_mode'" display-field="'mode_name'" value-field="'mode_value'" search-fields="'mode_name'" page-size="100" ></sn-record-picker></div>
+        	</div>
        </div>
        <div class="form-group clearfix" style="margin-bottom: 40px;">
           <div class="pull-right">
